@@ -1,3 +1,4 @@
+
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
@@ -22,15 +23,45 @@
 			
 			<div class="row">
 				<h1>Lista de Produtos</h1>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th class="text-center">Produto</th>	
+							<th class="text-center">Detalhe</th>	
+							<th class="text-center">Preço a vista</th>							
+						</tr>
+					</thead>
 					<?php
-					echo '<prev>';
-						print_r($data);
-					echo '</prev>';
+						$contador = 0;
+						foreach ($produtos as $produto) 
+						{
+							echo '<tr>';
+								echo '<td>'.$produto->descricao.'</td>';
+								echo '<td class="text-center">'.$produto->detalhamento.'</td>';
+								echo '<td class="text-right">'.$produto->preco_vista.'</td>';			
+								echo '<td class="text-center">';
+								echo '<a href="/produtos/editar/'.$produto->id.'" title="Editar cadastro" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+								echo '<a href="/produtos/apagar/'.$produto->id.'" title="Apagar cadastro" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>';
+								echo '<a href="/produtos/detalhes/'.$produto->id.'" title="Detalhes" class="btn btn-info"><span class="glyphicon glyphicon-open" aria-hidden="true"></span></a>';
+								echo '</td>';
+							echo '</tr>'; 
+						$contador++;
+						}
 					?>
+
+				</table>
+
+				<div class="row">
+					<div class="col-md-12">
+						Total de registro: <?php echo $contador ?>
+					</div>
+				</div>
+
 			</div>
+		
 		</div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
 	</body>
 </html>
