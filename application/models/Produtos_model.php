@@ -10,5 +10,12 @@ class Produtos_Model extends CI_Model
 		return $query->result();
 	}
 
+	//Adiciona um novo produtos na tabela produtos
+    public function addProduto($dados=NULL)
+	{
+	if ($dados != NULL):
+		$this->db->insert('produtos', $dados);		
+	endif;
+	}   
 
 }

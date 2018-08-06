@@ -15,6 +15,10 @@
 
 		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
+			<style type="text/css">
+	      		.margin-button15 { margin-bottom: 15px; }
+	    	</style> 
+
 	</head>
 	
 	<body>
@@ -23,12 +27,19 @@
 			
 			<div class="row">
 				<h1>Lista de Produtos</h1>
-				<table class="table table-hover">
+
+				 <a href="<?=base_url('produtos/add')?>" class="btn btn-success margin-button15 btn-center">Novo Produto</a>
+
+				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th class="text-center">Produto</th>	
 							<th class="text-center">Detalhe</th>	
-							<th class="text-center">Preço a vista</th>							
+							<th class="text-center">Preço a vista</th>	
+							<th class="text-center">Preço a prazo</th>	
+								
+							<th class="text-center">Ações</th>							
+
 						</tr>
 					</thead>
 					<?php
@@ -38,7 +49,8 @@
 							echo '<tr>';
 								echo '<td>'.$produto->descricao.'</td>';
 								echo '<td class="text-center">'.$produto->detalhamento.'</td>';
-								echo '<td class="text-center">'.$produto->preco_vista.'</td>';			
+								echo '<td class="text-center">'.'$ '.$produto->preco_vista.'</td>';	
+								echo '<td class="text-center">'.'$ '.$produto->preco_prazo.'</td>';	
 								echo '<td class="text-center">';
 								echo '<a href="/produtos/editar/'.$produto->id.'" title="Editar cadastro" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
 								echo '<a href="/produtos/apagar/'.$produto->id.'" title="Apagar cadastro" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>';
