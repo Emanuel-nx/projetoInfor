@@ -37,7 +37,7 @@
 							<th class="text-center">Detalhe</th>	
 							<th class="text-center">Preço a vista</th>	
 							<th class="text-center">Preço a prazo</th>	
-								
+							<th class="text-center">Status</th>									
 							<th class="text-center">Ações</th>							
 
 						</tr>
@@ -52,9 +52,22 @@
 								echo '<td class="text-center">'.'$ '.$produto->preco_vista.'</td>';	
 								echo '<td class="text-center">'.'$ '.$produto->preco_prazo.'</td>';	
 								echo '<td class="text-center">';
-								echo '<a href="/produtos/editar/'.$produto->id.'" title="Editar cadastro" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
-								echo '<a href="/produtos/apagar/'.$produto->id.'" title="Apagar cadastro" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>';
-								echo '<a href="/produtos/detalhes/'.$produto->id.'" title="Detalhes" class="btn btn-info"><span class="glyphicon glyphicon-open" aria-hidden="true"></span></a>';
+
+								//Verificamos o status do produto
+							    if ($produto->status == 1) {
+							       	//Se tiver == 1 está Ativo
+							        echo '<span class="label label-success"><a href="http://localhost:8080/projetoinfor/produtos/status/'.$produto->id.'"title="Deixar Inativo">Ativo</a></span>';
+							      	} else {
+							        //Se tiver == 0 está INATIVO
+							        echo '<span class="label label-warning"><a href="http://localhost:8080/projetoinfor/produtos/status/'.$produto->id.'"title="Deixar Ativo">Inativo</a></span>';
+							    }  
+							    echo '</td>';
+
+							    echo '<td class="text-center">'; 
+								echo '<a href="http://localhost:8080/projetoinfor/produtos/editar/'.$produto->id.'" title="Editar cadastro" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+
+								echo '<a href="http://localhost:8080/projetoinfor/produtos/apagar/'.$produto->id.'" title="Apagar cadastro" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>';
+
 								echo '</td>';
 							echo '</tr>'; 
 						$contador++;

@@ -23,16 +23,16 @@
     <![endif]-->       
   </head>
 
-  <body>    
+  <body> 
 
     <div class="container">
 
       <div class="row">
                 
-        <h1>Novo produto</h1>   
+        <h1>Atualizar produto</h1>   
         <ol class="breadcrumb">
               <li><a href="<?=base_url('produtos')?>">Inicio</a></li>          
-              <li class="active">Novo produto</li>
+              <li class="active">Atualizar produto</li>
         </ol>      
 
         <!-- Formulário de novo cadastro  -->
@@ -42,7 +42,7 @@
           <div class="row">
             <div class="col-md-8">
               <label>Nome</label>*
-              <input type="text" name="descricao" value="" class="form-control" placeholder="Campo Obrigatorio!" required>
+              <input type="text" name="descricao" value="<?php echo $produto->descricao ?>" class="form-control" placeholder="Campo Obrigatorio!" required>
             </div>
           </div> <!-- fim input text nome produtos -->
 
@@ -50,7 +50,7 @@
           <div class="row">
             <div class="col-md-8">
               <label>Detalhes</label>
-              <input type="text" name="detalhamento" value="" class="form-control">
+              <input type="text" name="detalhamento" value="<?php echo $produto->detalhamento ?>" class="form-control">
             </div>
           </div> <!-- fim input text nome produtos -->
 
@@ -59,14 +59,14 @@
           <div class="row">
 	            <div class="col-md-2">
 	              <label>Preço a vista</label>
-	              <input type="text" name="preco_vista" value="" class="form-control" placeholder="R$ ">
+	              <input type="text" name="preco_vista" value="<?php echo $produto->preco_vista ?>" class="form-control" placeholder="R$ ">
 	            </div>
 	          
 		           <!-- Input text preço do produtos -->
 		  <div class="row">
 		      	<div class="col-md-2">
 		            <label>Preço a prazo</label>
-		             <input type="text" name="preco_prazo" value="" class="form-control" placeholder="R$ ">
+		             <input type="text" name="preco_prazo" value="<?php echo $produto->preco_prazo ?>" class="form-control" placeholder="R$ ">
 		        </div>
 
           <!-- Select produtos ativo ou inativo -->
@@ -74,8 +74,8 @@
             <div class="col-md-2">
               <label>Ativo</label>
               <select name="status" class="form-control">
-                <option value="1">Sim</option>
-                <option value="0">Não</option>
+                <option value="1"<?php echo ($produto->status == 1 ? 'selected="selected"' : '') ?> >Sim</option>
+                <option value="0"<?php echo ($produto->status == 0 ? 'selected="selected"' : '') ?> >Não</option>
               </select>
             </div>
           </div><!-- fim select produtos ativo ou inativo -->
@@ -87,7 +87,8 @@
           <br />
           <div class="row">
             <div class="col-md-2">
-              <button type="submit" class="btn btn-primary">Cadastrar</button>
+            	<input type="hidden" name="id" value="<?php echo $produto->id ?>">
+            	<button type="submit" class="btn btn-primary">Atualizar</button>
             </div>
           </div><!-- fim do button submit(enviar) formulário -->
           
