@@ -36,7 +36,7 @@
         </ol>      
 
         <!-- Formulário de novo cadastro  -->
-        <form action="salvar" name="form_add" data-toggle="validator"method="post">
+        <form action="<?=base_url('produtos/salvar')?>" name="form_add" data-toggle="validator"method="post">
           
           <!-- Input text nome do produtos -->
           <div class="row">

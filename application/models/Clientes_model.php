@@ -2,22 +2,22 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Produtos_Model extends CI_Model
+class Clientes_Model extends CI_Model
 {
-	public function getProdutos()
+	public function getClientes()
 	{
-		$query = $this->db->get('produtos');
+		$query = $this->db->get('clientes');
 		return $query->result();
 	}
-	//Adiciona um novo produtos na tabela produtos
-    public function addProduto($dados=NULL)
+	//Adiciona um novo clientes na tabela clientes
+    public function addClientes($dados=NULL)
 	{
 	if ($dados != NULL):
-		$this->db->insert('produtos', $dados);		
+		$this->db->insert('clientes', $dados);		
 	endif;
 	}
 
-	public function getProdutoByID($id=NULL)
+	public function getClientesByID($id=NULL)
     {
     	if ($id != NULL):
         	//Verifica se a ID no banco de dados
@@ -25,31 +25,31 @@ class Produtos_Model extends CI_Model
         	//limita para apenas um regstro    
         	$this->db->limit(1);
         	//pega os produto
-        	$query = $this->db->get("produtos");        
+        	$query = $this->db->get("clientes");        
         	//retornamos o produto
         return $query->row();   
     endif;
     } 
 
-    //Atualizr um produto na tabela produtos
-    public function editarProduto($dados, $id) {
-	    $this->db->update('produtos', $dados, array('id'=> $id));
+    //Atualizr um produto na tabela clientes
+    public function editarClientes($dados, $id) {
+	    $this->db->update('clientes', $dados, array('id'=> $id));
     }
 
     //Apagar registro
-     public function apagarProduto($id=NULL){
+     public function apagarClientes($id=NULL){
         //Verificamos se foi passado o a ID como parametro
         if ($id != NULL):
             //Executa a função DB DELETE para apagar o produto
-            $this->db->delete('produtos', array('id'=>$id));            
+            $this->db->delete('clientes', array('id'=>$id));            
         endif;
     } 
-    //Muda status do produtos na tabela produtos 
-    public function statusProduto($status=NULL, $id=NULL){
+    //Muda status do clientes na tabela clientes 
+    public function statusClientes($status=NULL, $id=NULL){
         //Verificamos se foi passado o a STATUS e ID como parametro
         if ($status != NULL && $id != NULL):
             //Executa a função DB UPDATE para mudar o status do produto
-            $this->db->update('produtos', $status, array('id'=>$id));            
+            $this->db->update('clientes', $status, array('id'=>$id));            
         endif;
     }      
 }
