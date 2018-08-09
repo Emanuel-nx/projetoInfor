@@ -11,7 +11,7 @@ class Clientes extends CI_Controller {
 		//PEGA DADOS DO MODEL
 		$data['clientes'] = $this->clientes->getClientes();
 		
-		$this->load->view('listarprodutos',$data);
+		$this->load->view('listarclientes',$data);
 	}
 
 	//Página de adicionar produto
@@ -27,7 +27,7 @@ class Clientes extends CI_Controller {
 	{
 
 		//Verifica se foi passado o campo nome vazio.
-		if ($this->input->post('descricao') == NULL) {
+		if ($this->input->post('nome') == NULL) {
 
 			echo "<p class='alert alert-success'>Preencha o campo DESCRIÇÃO!</p>";
 			echo '<a href="add" title="voltar" class="btn btn-primary">Voltar</a>';
@@ -35,21 +35,27 @@ class Clientes extends CI_Controller {
 			//Carrega o Model clientes				
 			$this->load->model('Clientes_model', 'clientes');
 			//Pega dados do post e guarda na array $dados
-			$dados['descricao'] = $this->input->post('descricao');
-			$dados['detalhamento'] = $this->input->post('detalhamento');
-			$dados['preco_vista'] = $this->input->post('preco_vista');
-			$dados['preco_prazo'] = $this->input->post('preco_prazo');		
+			$dados['nome'] = $this->input->post('nome');
+			$dados['cpf'] = $this->input->post('cpf');
+			$dados['rg'] = $this->input->post('rg');
+			$dados['endereco'] = $this->input->post('endereco');		
+			$dados['numero'] = $this->input->post('numero');		
+			$dados['estado'] = $this->input->post('estado');		
+			$dados['cidade'] = $this->input->post('cidade');		
+			$dados['renda'] = $this->input->post('renda');		
+			$dados['usuario_id'] = $this->input->post('usuario_id');		
+			$dados['created'] = $this->input->post('created');
 			$dados['status'] = $this->input->post('status');		
 			
 			//Verifica se foi passado via POST a id dos clientes
 			if ($this->input->post('id') != NULL) {	
 				//Se foi passado ele vai fazer atualização no registro.	
-				$this->clientes->editarProduto($dados, $this->input->post('id'));
+				$this->clientes->editarClientes($dados, $this->input->post('id'));
 			} else {
 				//Se Não foi passado id ele adiciona um novo registro
-				$this->clientes->addProduto($dados);
+				$this->clientes->addClientes($dados);
 			}		
-			redirect("");	
+			redirect('clientes');	
 		}		
 	}
 
@@ -57,7 +63,7 @@ class Clientes extends CI_Controller {
 	{						
 		//Verifica se foi passado um ID, se não vai para a página listar clientes
 		if($id == NULL) {
-			redirect('');
+			redirect('clientes');
 		}
 
 			//Carrega o Model clientes				
@@ -68,10 +74,10 @@ class Clientes extends CI_Controller {
 
 		//Verifica que a consulta voltar um registro, se não vai para a página listar clientes
 		if($query == NULL) {
-			redirect('');
+			redirect('clientes');
 		}
 			//Criamos uma array onde vai guardar os dados do produto e passamos como parametro para view;
-			$dados['produto'] = $query;
+			$dados['clientes'] = $query;
 			
 			//Carrega a View
 			$this->load->view('editarclientes', $dados);		
@@ -82,7 +88,7 @@ class Clientes extends CI_Controller {
 	{
 		//Verifica se foi passado um ID, se não vai para a página listar clientes
 		if($id == NULL) {
-			redirect('');
+			redirect('clientes');
 		}
 
 		//Carrega o Model clientes				
@@ -96,11 +102,11 @@ class Clientes extends CI_Controller {
 			
 			//Executa a função apagarclientes do Clientes_model
 			$this->clientes->apagarClientes($query->id);
-			redirect('');
+			redirect('clientes');
 
 		} else {
 			//Se não encontrou nenhum registro no banco de dados com a ID passada ele volta para página listar clientes
-			redirect('');
+			redirect('clientes');
 		}	
 	}
 	public function status($id=NULL)
@@ -108,7 +114,7 @@ class Clientes extends CI_Controller {
 
 		//Verifica se foi passado um ID, se não vai para a página listar clientes
 		if($id == NULL) {
-			redirect('');
+			redirect('clientes');
 		}
 
 		//Carrega o Model clientes				
@@ -129,12 +135,12 @@ class Clientes extends CI_Controller {
 
 			//Executa a função do Clientes_model statusProduto
 			$this->clientes->statusClientes($dados, $query->id);
-			redirect('');
+			redirect('clientes');
 
 
 		} else {
 			//Se não encontrou nenhum registro no banco de dados com a ID passada ele volta para página listar clientes
-			redirect('');
+			redirect('clientes');
 		}
 
 	}

@@ -49,7 +49,7 @@ class Produtos extends CI_Controller {
 				//Se Não foi passado id ele adiciona um novo registro
 				$this->produtos->addProduto($dados);
 			}		
-			redirect("");	
+			redirect("/");	
 		}		
 	}
 
@@ -57,7 +57,7 @@ class Produtos extends CI_Controller {
 	{						
 		//Verifica se foi passado um ID, se não vai para a página listar produtos
 		if($id == NULL) {
-			redirect('');
+			redirect('/');
 		}
 
 			//Carrega o Model Produtos				
@@ -68,7 +68,7 @@ class Produtos extends CI_Controller {
 
 		//Verifica que a consulta voltar um registro, se não vai para a página listar produtos
 		if($query == NULL) {
-			redirect('');
+			redirect('/');
 		}
 			//Criamos uma array onde vai guardar os dados do produto e passamos como parametro para view;
 			$dados['produto'] = $query;
@@ -82,7 +82,7 @@ class Produtos extends CI_Controller {
 	{
 		//Verifica se foi passado um ID, se não vai para a página listar produtos
 		if($id == NULL) {
-			redirect('');
+			redirect('/');
 		}
 
 		//Carrega o Model Produtos				
@@ -96,11 +96,11 @@ class Produtos extends CI_Controller {
 			
 			//Executa a função apagarProdutos do produtos_model
 			$this->produtos->apagarProduto($query->id);
-			redirect('');
+			redirect('/');
 
 		} else {
 			//Se não encontrou nenhum registro no banco de dados com a ID passada ele volta para página listar produtos
-			redirect('');
+			redirect('/');
 		}	
 	}
 	public function status($id=NULL)
@@ -108,7 +108,7 @@ class Produtos extends CI_Controller {
 
 		//Verifica se foi passado um ID, se não vai para a página listar produtos
 		if($id == NULL) {
-			redirect('');
+			redirect('/');
 		}
 
 		//Carrega o Model Produtos				
@@ -129,12 +129,12 @@ class Produtos extends CI_Controller {
 
 			//Executa a função do produtos_model statusProduto
 			$this->produtos->statusProduto($dados, $query->id);
-			redirect('');
+			redirect('/');
 
 
 		} else {
 			//Se não encontrou nenhum registro no banco de dados com a ID passada ele volta para página listar produtos
-			redirect('');
+			redirect('/');
 		}
 
 	}
